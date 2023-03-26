@@ -1,10 +1,12 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { SignIn, SignInButton, useUser, SignOutButton } from '@clerk/nextjs'
+import { api } from '~/utils/api'
 
 const Home: NextPage = () => {
 
   const user = useUser()
+  const { data } = api.posts.getAll.useQuery();
 
   return (
     <>
@@ -20,6 +22,11 @@ const Home: NextPage = () => {
           </p>
         </div>
         <SignIn path="/sign-in" routing="path" signUpUrl="/sign-up" />
+        <div>
+          <div>
+            {data?.map((post) => (<div key={post.id}>{post.content}</div>))}
+          </div>
+        </div>
       </section>
     </>
   );
