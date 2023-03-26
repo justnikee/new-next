@@ -39,7 +39,7 @@ const Home: NextPage = () => {
             </p>
           </div>
           <div className="flex flex-col">
-            {[...data, ...data]?.map((post) => (<div className="p-8 border-b border-slate-200" key={post.id}>{post.content}</div>))}
+            {/* {[...data, ...data]?.map((post) => (<div className="p-8 border-b border-slate-200" key={post.id}>{post.content}</div>))} */}
           </div>
         </div>
       </main>
