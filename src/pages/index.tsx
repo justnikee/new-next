@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import { SignIn, SignInButton, useUser, SignOutButton } from '@clerk/nextjs'
+import { SignInButton, useUser, SignOutButton } from '@clerk/nextjs'
 import { RouterOutputs, api } from '~/utils/api'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
