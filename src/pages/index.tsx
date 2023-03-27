@@ -1,20 +1,48 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import { SignIn, SignInButton, useUser, SignOutButton } from '@clerk/nextjs'
-import { api } from '~/utils/api'
+import { RouterOutputs, api } from '~/utils/api'
+import dayjs from 'dayjs'
+import relativeTime from 'dayjs/plugin/relativeTime'
+import Image from "next/image";
+
+dayjs.extend(relativeTime)
 
 const CreatePostWizard = () => {
   const { user } = useUser();
   if (!user) return null;
 
-  console.log(user)
   return (
-    <div className="flex gap-4 w-full">
-      <img src={user?.profileImageUrl} alt="profile image" className="w-14 h-14 rounded-full
+    <div className="flex gap-4 w-full p-8">
+      <Image
+        height={56}
+        width={56} src={user?.profileImageUrl} alt="profile picture" className="w-14 h-14 rounded-full
       "/>
       <input placeholder="type some emoji's" className="bg-transparent grow outline-none" />
     </div>
   )
+}
+// this comes from api trpc //
+type PostWithUser = RouterOutputs['posts']['getAll'][number]
+const PostView = (props: PostWithUser) => {
+  const { post, auther } = props;
+  return (
+    <div className="p-8 border-b border-slate-200 flex items-center gap-4" key={post.id}>
+      <Image
+        height={56}
+        width={56}
+        src={auther.profileImageUrl} alt={`${auther.username}'s profile Picture`} className="w-14 h-14 rounded-full
+      " />
+      <div className="flex flex-col">
+        <div className="flex text-slate-200 gap-1">
+          <span>{`@${auther.username}`}</span>
+          <span>{` · ${dayjs(post.createdAt).fromNow()}`}</span>
+        </div>
+        <span>{post.content}</span>
+      </div>
+    </div>
+  )
+
 }
 
 const Home: NextPage = () => {
@@ -39,7 +67,10 @@ const Home: NextPage = () => {
             </p>
           </div>
           <div className="flex flex-col">
-            {/* {[...data, ...data]?.map((post) => (<div className="p-8 border-b border-slate-200" key={post.id}>{post.content}</div>))} */}
+            {[...data, ...data]?.map((fullpost) => (
+              <PostView {...fullpost} key={fullpost.post.id} />
+            )
+            )}
           </div>
         </div>
       </main>
