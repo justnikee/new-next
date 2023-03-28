@@ -34,7 +34,7 @@ export const createTRPCContext = (opts: CreateNextContextOptions) => {
   return {
     prisma,
     userId,
-  };;
+  };
 };
 
 /**
@@ -96,7 +96,7 @@ const enforceUserIsAuthed = t.middleware(async ({ ctx, next }) => {
     ctx: {
       userId: ctx.userId,
     }
-  });
+  })
 })
 
 
