@@ -1,5 +1,5 @@
 
-const LoadingSpinner = (props: { size?: number }) => {
+export const LoadingSpinner = (props: { size?: number }) => {
     return (
         <div role="status">
             <svg aria-hidden="true" width={props.size ?? 40} height={props.size ?? 40} className="text-gray-200 animate-spin dark:text-gray-600 fill-blue-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -10,7 +10,6 @@ const LoadingSpinner = (props: { size?: number }) => {
         </div>
     )
 }
-
 
 const Loadingpage = () => {
     return (
