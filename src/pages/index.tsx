@@ -10,6 +10,7 @@ import { useState } from "react";
 import {
   toast
 } from "react-hot-toast";
+import Link from 'next/link'
 
 dayjs.extend(relativeTime)
 
@@ -79,8 +80,8 @@ const PostView = (props: PostWithUser) => {
       " />
       <div className="flex flex-col">
         <div className="flex text-slate-200 gap-1">
-          <span>{`@${auther.username}`}</span>
-          <span>{` · ${dayjs(post.createdAt).fromNow()}`}</span>
+          <Link href={`/@${auther.username}`}><span>{`@${auther.username}`}</span></Link>
+          <Link href={`/post/${post.id}`}><span>{` · ${dayjs(post.createdAt).fromNow()}`}</span></Link>
         </div>
         <span>{post.content}</span>
       </div>
