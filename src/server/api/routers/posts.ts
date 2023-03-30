@@ -5,7 +5,7 @@ import { clerkClient } from "@clerk/nextjs/server"
 import { PrivateProcedures, createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { TRPCClientError } from "@trpc/client";
 import { TRPCError } from "@trpc/server";
-import { Ratelimit } from "@upstash/ratelimit"; // for deno: see above
+import { Ratelimit } from "@upstash/ratelimit";
 import { Redis } from "@upstash/redis";
 
 const filterUserForClient = (user: User) => {

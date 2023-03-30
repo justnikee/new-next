@@ -116,7 +116,7 @@ const Home: NextPage = () => {
   return (
     <>
       <Head>
-        <title>Created with T3 Stack</title>
+        <title>EmoG</title>
       </Head>
       <main className="flex justify-center h-screen">
         <div className="w-full border-x border-slate-200 md:max-w-2xl ">
